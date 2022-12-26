@@ -1,3 +1,34 @@
+# BEGINNING OF JAVA .GITIGNORE TEMPLATE
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+# END OF JAVA .GITIGNORE TEMPLATE
+
+# BEGINNING OF GRADLE .GITIGNORE TEMPLATE
+
 .gradle
 **/build/
 !src/**/build/
@@ -16,3 +47,12 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+# END OF GRADLE .GITIGNORE TEMPLATE
+
+# BEGINNING OF SPRING TOOL SUITE IGNORED FILES
+
+.settings
+bin/
+
+# BEGINNING OF SPRING TOOL SUITE IGNORED FILES
