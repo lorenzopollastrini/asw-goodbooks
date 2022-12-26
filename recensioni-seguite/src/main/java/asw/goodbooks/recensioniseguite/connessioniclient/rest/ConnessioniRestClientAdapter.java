@@ -1,4 +1,4 @@
-package asw.goodbooks.recensioniseguite.connessioni;
+package asw.goodbooks.recensioniseguite.connessioniclient.rest;
 
 import asw.goodbooks.recensioniseguite.domain.*; 
 

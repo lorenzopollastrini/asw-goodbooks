@@ -1,4 +1,4 @@
-package asw.goodbooks.recensioniseguite.enigmi;
+package asw.goodbooks.recensioniseguite.recensioniclient.rest;
 
 import asw.goodbooks.recensioniseguite.domain.*; 
 
