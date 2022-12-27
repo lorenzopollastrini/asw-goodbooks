@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo Halting all running java processes  
+echo Halting all running java processes (except Eclipse)  
 
-pkill -f 'java'
+ps ax | awk '/java/ && !/eclipse/ {system("sudo kill "$1)}'

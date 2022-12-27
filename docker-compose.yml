@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+
+  recensioni-db:
+    build: ./recensioni/database
+    container_name: recensioni-db
+    ports:
+      - "5432:5432"
+    user: postgres
