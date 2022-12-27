@@ -8,3 +8,10 @@ services:
     ports:
       - "5432:5432"
     user: postgres
+  
+  connessioni-db:
+    build: ./connessioni/database
+    container_name: connessioni-db
+    ports:
+      - "5433:5432"
+    user: postgres
