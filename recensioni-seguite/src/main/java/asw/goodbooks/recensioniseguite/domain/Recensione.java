@@ -3,7 +3,9 @@ package asw.goodbooks.recensioniseguite.domain;
 import lombok.*; 
 
 /* Recensione. */ 
-@Data @NoArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Recensione implements Comparable<Recensione> {
 
