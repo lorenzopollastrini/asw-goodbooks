@@ -4,7 +4,7 @@ spring:
   application: 
     name: connessioni
   datasource:
-    url: jdbc:postgresql://localhost:5433/connessioni
+    url: jdbc:postgresql://localhost:5434/connessioni
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
