@@ -1,11 +1,21 @@
 package asw.goodbooks.recensioniseguite.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import lombok.*; 
 
-@Data @NoArgsConstructor
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ConnessioneConAutore {
 
-	private Long id; 
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	private String utente; 
 	private String autore; 
 	

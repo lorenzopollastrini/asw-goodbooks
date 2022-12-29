@@ -12,6 +12,7 @@ dependencyManagement {
 dependencies {
 	implementation project(":goodbooks-common-api-event")
 	implementation project(":recensioni-api-event")
+	implementation project(":connessioni-api-event")
 	
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter'

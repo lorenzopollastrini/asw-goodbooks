@@ -1,16 +1,24 @@
 package asw.goodbooks.recensioniseguite.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import lombok.*; 
 
 /* Recensione. */ 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Recensione implements Comparable<Recensione> {
 
+	@Id 
+	@GeneratedValue
 	@EqualsAndHashCode.Include
 	private Long id; 
+	
 	private String recensore; 
 	private String titoloLibro; 
 	private String autoreLibro; 

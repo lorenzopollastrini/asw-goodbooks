@@ -10,7 +10,8 @@ public class ConnessioneConAutore {
 
 	@Id 
 	@GeneratedValue
-	private Long id; 
+	private Long id;
+	
 	private String utente; 
 	private String autore; 
 	
