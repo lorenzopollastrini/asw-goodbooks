@@ -64,28 +64,13 @@ services:
       - "recensioniseguite-db"
 
   recensioni-db:
-    image: postgres
     container_name: recensioni-db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: recensioni
-    user: postgres
+    build: ./recensioni/database
   
   connessioni-db:
-    image: postgres
     container_name: connessioni-db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: connessioni
-    user: postgres
+    build: ./connessioni/database
   
   recensioniseguite-db:
-    image: postgres
     container_name: recensioniseguite-db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: recensioniseguite
-    user: postgres
+    build: ./recensioni-seguite/database
