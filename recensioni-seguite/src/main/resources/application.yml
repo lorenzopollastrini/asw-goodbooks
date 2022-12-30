@@ -4,7 +4,7 @@ spring:
   application: 
     name: recensioni-seguite
   datasource:
-    url: jdbc:postgresql://localhost:5435/recensioniseguite
+    url: jdbc:postgresql://recensioniseguite-db:5432/recensioniseguite
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
@@ -13,7 +13,7 @@ spring:
     hibernate:
       ddl-auto: create
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     consumer:
       group-id: ${spring.application.name}
       auto-offset-reset: earliest
@@ -22,13 +22,14 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
   cloud:
     consul:
-      host: localhost
+      #host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
         healthCheckPath: /actuator/health
         healthCheckInterval: 10s
-        # configurazione per effettuare esprimenti, NON USARE UN PRODUZIONE 
+        # configurazione per effettuare esprimenti, NON USARE IN PRODUZIONE 
         # dopo quanto tempo consul deve smettere di restituire servizi che non rispondono all'health check? 
         healthCheckCriticalTimeout: 45s
         # consul deve restituire solo servizi che passano l'health check (default=false) 

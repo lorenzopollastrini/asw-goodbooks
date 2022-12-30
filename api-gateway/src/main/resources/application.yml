@@ -5,13 +5,14 @@ spring:
     name: apigateway
   cloud:
     consul:
-      host: localhost
+      #host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
         healthCheckPath: /actuator/health
         healthCheckInterval: 10s
-        # configurazione per effettuare esprimenti, NON USARE UN PRODUZIONE 
+        # configurazione per effettuare esprimenti, NON USARE IN PRODUZIONE 
         # dopo quanto tempo consul deve smettere di restituire servizi che non rispondono all'health check? 
         healthCheckCriticalTimeout: 45s
         # consul deve restituire solo servizi che passano l'health check (default=false) 
@@ -23,7 +24,7 @@ spring:
       discovery:
         locator:
           # spring.cloud.gateway.discovery.locator.enabled abilita la definizione implicita di rotte 
-          # sulla base dei servizi registrati nel servizio di service discover (default=false) 
+          # sulla base dei servizi registrati nel servizio di service discovery (default=false) 
           # enabled: true       
           enabled: false
       routes:

@@ -4,7 +4,7 @@ spring:
   application: 
     name: recensioni
   datasource:
-    url: jdbc:postgresql://localhost:5432/recensioni
+    url: jdbc:postgresql://recensioni-db:5432/recensioni
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
@@ -13,13 +13,14 @@ spring:
     hibernate:
       ddl-auto: create
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   cloud:
     consul:
-      host: localhost
+      #host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
