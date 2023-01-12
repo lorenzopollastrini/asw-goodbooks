@@ -4,7 +4,6 @@ import asw.goodbooks.recensioni.domain.Recensione;
 
 import lombok.*; 
 
-/* Enigma, in formato breve (senza soluzione). */ 
 @Data @NoArgsConstructor
 public class GetRecensioneResponse {
 

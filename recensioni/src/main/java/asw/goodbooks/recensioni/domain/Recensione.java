@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 import lombok.*; 
 
-/* Enigma, in formato completo. */ 
 @Entity 
 @Data @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
