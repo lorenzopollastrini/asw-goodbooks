@@ -1,0 +1,469 @@
+#####################   NAMESPACE   #####################
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: asw-goodbooks-ns
+  
+---
+
+#####################   DEPLOYMENTS   #####################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway-dpl
+  namespace: asw-goodbooks-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asw-goodbooks
+      service: api-gateway
+  template: 
+    metadata:
+      labels:
+        app: asw-goodbooks
+        service: api-gateway
+    spec:
+      containers:
+      - name: api-gateway
+        image: lorenzopollastrini/api-gateway:latest
+        ports:
+        - containerPort: 8080
+        
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: connessioni-dpl
+  namespace: asw-goodbooks-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asw-goodbooks
+      service: connessioni
+  template: 
+    metadata:
+      labels:
+        app: asw-goodbooks
+        service: connessioni
+    spec:
+      containers:
+      - name: connessioni
+        image: lorenzopollastrini/connessioni:latest
+        ports:
+        - containerPort: 8080
+        
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recensioni-dpl
+  namespace: asw-goodbooks-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asw-goodbooks
+      service: recensioni
+  template: 
+    metadata:
+      labels:
+        app: asw-goodbooks
+        service: recensioni
+    spec:
+      containers:
+      - name: recensioni
+        image: lorenzopollastrini/recensioni:latest
+        ports:
+        - containerPort: 8080
+        
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recensioniseguite-dpl
+  namespace: asw-goodbooks-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asw-goodbooks
+      service: recensioniseguite
+  template: 
+    metadata:
+      labels:
+        app: asw-goodbooks
+        service: recensioniseguite
+    spec:
+      containers:
+      - name: recensioniseguite
+        image: lorenzopollastrini/recensioniseguite:latest
+        ports:
+        - containerPort: 8080
+        
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper-dpl
+  namespace: asw-goodbooks-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asw-goodbooks
+      service: zookeeper
+  template: 
+    metadata:
+      labels:
+        app: asw-goodbooks
+        service: zookeeper
+    spec:
+      containers:
+      - name: zookeeper
+        image: bitnami/zookeeper
+        env:
+        - name: ALLOW_ANONYMOUS_LOGIN
+          value: "yes"
+        ports:
+        - containerPort: 2181
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-dpl
+  namespace: asw-goodbooks-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asw-goodbooks
+      service: kafka
+  template: 
+    metadata:
+      labels:
+        app: asw-goodbooks
+        service: kafka
+    spec:
+      containers:
+      - name: kafka
+        image: bitnami/kafka:latest
+        env:
+        - name: KAFKA_BROKER_ID
+          value: "1"
+        - name: ALLOW_PLAINTEXT_LISTENER
+          value: "yes"
+        - name: KAFKA_ADVERTISED_HOST_NAME
+          value: kafka
+        - name: KAFKA_PORT
+          value: "9092"
+        - name: KAFKA_CFG_ZOOKEEPER_CONNECT
+          value: zookeeper:2181
+        - name: KAFKA_CREATE_TOPICS
+          value: "recensioni-event-channel:4:1,connessioni-event-channel:4:1"
+        ports:
+        - containerPort: 9092
+         
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: connessioni-db-dpl
+  namespace: asw-goodbooks-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asw-goodbooks
+      service: connessioni-db
+  template: 
+    metadata:
+      labels:
+        app: asw-goodbooks
+        service: connessioni-db
+    spec:
+      containers:
+      - name: connessioni-db
+        image: lorenzopollastrini/connessioni-db:latest
+        ports:
+        - containerPort: 5432
+          
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recensioni-db-dpl
+  namespace: asw-goodbooks-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asw-goodbooks
+      service: recensioni-db
+  template: 
+    metadata:
+      labels:
+        app: asw-goodbooks
+        service: recensioni-db
+    spec:
+      containers:
+      - name: recensioni-db
+        image: lorenzopollastrini/recensioni-db:latest
+        ports:
+        - containerPort: 5432
+          
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recensioniseguite-db-dpl
+  namespace: asw-goodbooks-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asw-goodbooks
+      service: recensioniseguite-db
+  template: 
+    metadata:
+      labels:
+        app: asw-goodbooks
+        service: recensioniseguite-db
+    spec:
+      containers:
+      - name: recensioniseguite-db
+        image: lorenzopollastrini/recensioniseguite-db:latest
+        ports:
+        - containerPort: 5432
+          
+---
+
+#####################   SERVICES   #####################
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-gateway
+  namespace: asw-goodbooks-ns
+spec:
+  selector:
+    app: asw-goodbooks
+    service: api-gateway
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+    
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: connessioni
+  namespace: asw-goodbooks-ns
+spec:
+  selector:
+    app: asw-goodbooks
+    service: connessioni
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+    
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: recensioni
+  namespace: asw-goodbooks-ns
+spec:
+  selector:
+    app: asw-goodbooks
+    service: recensioni
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+    
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: recensioniseguite
+  namespace: asw-goodbooks-ns
+spec:
+  selector:
+    app: asw-goodbooks
+    service: recensioniseguite
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+    
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: zookeeper
+  namespace: asw-goodbooks-ns
+spec:
+  selector:
+    app: asw-goodbooks
+    service: zookeeper
+  ports:
+  - protocol: TCP
+    port: 2181
+    targetPort: 2181
+    
+---
+
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: kafka
+  namespace: asw-goodbooks-ns
+spec:
+  selector:
+    app: asw-goodbooks
+    service: kafka
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 9092
+    targetPort: 9092
+    
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: connessioni-db
+  namespace: asw-goodbooks-ns
+spec:
+  selector:
+    app: asw-goodbooks
+    service: connessioni-db
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+    
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: recensioni-db
+  namespace: asw-goodbooks-ns
+spec:
+  selector:
+    app: asw-goodbooks
+    service: recensioni-db
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+    
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: recensioniseguite-db
+  namespace: asw-goodbooks-ns
+spec:
+  selector:
+    app: asw-goodbooks
+    service: recensioniseguite-db
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+    
+---
+
+#####################   INGRESS   #####################
+
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: api-gateway-ing
+  namespace: asw-goodbooks-ns
+spec:
+  rules:
+  - host: goodbooks
+    http: 
+      paths: 
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: api-gateway
+            port:
+              number: 8080
+          
+---
+
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: kafka-ing
+  namespace: asw-goodbooks-ns
+spec:
+ rules:
+ - host: kafka
+   http:
+     paths:
+     - pathType: Prefix
+       path: /
+       backend:
+          service:
+            name: kafka
+            port:
+              number: 9092
+         
+---
+
+#####################   SECURITY   #####################
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: service-discovery-reader
+rules:
+  - apiGroups: ["", "extensions", "apps"]
+    resources: ["pods", "services", "endpoints"]
+    verbs: ["get", "list", "watch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: service-discovery-reader-binding
+subjects:
+# all service accounts in any namespace
+- kind: Group
+  name: system:serviceaccounts
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: service-discovery-reader
+  apiGroup: ""
