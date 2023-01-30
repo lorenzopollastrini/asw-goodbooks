@@ -6,7 +6,8 @@ Questo progetto può essere eseguito nell'ambiente di esecuzione *workstation* d
 
 Per eseguire questo progetto: 
 
-* Collegarsi alla macchina virtuale *workstation* tramite SSH 
+* Collegarsi alla macchina virtuale *workstation* tramite SSH
+* Spostarsi nella directory contenente il progetto 
 * Compilare il codice sorgente con il comando `gradle build` 
 * Effettuare il rilascio dell'applicazione eseguendo lo script `run-goodbooks-docker.sh`
 * Attendere che in ogni container si sia completato l'avvio del rispettivo contenuto
