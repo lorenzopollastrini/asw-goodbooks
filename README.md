@@ -3,6 +3,7 @@
 Progetto del corso di Analisi e progettazione del software per l'anno accademico 2022-2023. 
 
 La variante eseguibile con Docker è disponibile nella branch [docker](https://github.com/lorenzopollastrini/asw-goodbooks/tree/docker).
+
 La variante eseguibile con Kubernetes è disponibile nella branch [kubernetes](https://github.com/lorenzopollastrini/asw-goodbooks/tree/kubernetes).
 
 
