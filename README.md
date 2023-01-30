@@ -2,6 +2,9 @@
 
 Progetto del corso di Analisi e progettazione del software per l'anno accademico 2022-2023. 
 
+La variante eseguibile con Docker è disponibile nella branch [docker](https://github.com/lorenzopollastrini/asw-goodbooks/tree/docker).
+La variante eseguibile con Kubernetes è disponibile nella branch [kubernetes](https://github.com/lorenzopollastrini/asw-goodbooks/tree/kubernetes)
+
 
 ## Descrizione di questo progetto 
 
@@ -52,44 +55,10 @@ L'applicazione *GoodBooks* è composta dai seguenti microservizi:
   * espone il servizio *recensioni-seguite* sul path `/recensioni-seguite` - ad esempio, `GET /recensioni-seguite/recensioniseguite/{utente}`
 
 
-## Esecuzione 
-
-Per eseguire questo progetto: 
-
-* avviare *Consul* eseguendo lo script `start-consul.sh` 
-
-* per avviare l'applicazione *GoodBooks*, eseguire lo script `run-goodbooks.sh` 
-
-* per inizializzare le basi di dati con dei dati di esempio, eseguire gli script `do-init-recensioni.sh` e `do-init-connessioni.sh` 
-
-
-Sono anche forniti alcuni script di esempio: 
-
-* lo script `run-curl-client.sh` esegue un insieme di interrogazioni di esempio 
-
-* lo script `do-get-recensioni.sh` trova tutte le recensioni 
-
-* lo script `do-get-recensione.sh` trova una recensione 
-
-* lo script `do-get-recensioni-per-autore.sh` trova tutte le recensioni di un certo autore 
-
-* lo script `do-get-recensioni-per-autori.sh` trova tutte le recensioni di un insieme di autori  
-
-* lo script `do-get-recensioni-per-titolo.sh` trova tutte le recensioni di un certo libro
-
-* lo script `do-get-recensioni-per-recensore.sh` trova tutte le recensioni di un certo recensore 
-
-* lo script `do-get-recensioni-per-recensori.sh` trova tutte le recensioni di un insieme di recensori  
-
-* lo script `do-get-connessioni.sh` trova tutte le connessioni 
-
-* lo script `do-get-recensioni-seguite.sh` trova tutte le recensioni seguite da un certo utente 
-
-Alla fine, l'applicazione può essere arrestata usando lo script `terminate-java-processes.sh` (**da usare con cautela!**). 
-
-Inoltre, *Consul* può essere arrestato con lo script `stop-consul.sh`. 
-
-
 ## Descrizione delle attività da svolgere 
 
 Si veda la descrizione del progetto sul sito web del corso di [Architettura dei sistemi software](http://cabibbo.dia.uniroma3.it/asw/).
+
+Questo progetto realizza:
+* La variante più complessa della sezione "Modifica del codice e della configurazione dell’applicazione"
+* Tutte le varianti della sezione "Modifica della modalità di rilascio dell’applicazione" (nelle branch [docker](https://github.com/lorenzopollastrini/asw-goodbooks/tree/docker) e [kubernetes](https://github.com/lorenzopollastrini/asw-goodbooks/tree/kubernetes))
