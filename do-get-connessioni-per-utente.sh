@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SERVICE_HOST=goodbooks
+CLUSTER=kube-cluster
+INGRESS_PORT=31080
+
 # trova tutte le connessioni per un certo utente  
 
 if [ $# -eq 0 ]
@@ -12,9 +16,9 @@ fi
 UTENTE=$(echo $1 | sed -e "s/ /%20/g") 
 
 echo "# tutte le connessioni per autore per l'utente $1" 
-echo $(curl -s localhost:8080/connessioni/connessioniautore/$UTENTE)
+echo $(curl -s ${SERVICE_HOST}:8080/connessioni/connessioniautore/$UTENTE --connect-to ${SERVICE_HOST}:80:${CLUSTER}:${INGRESS_PORT})
 echo 
 
 echo "# tutte le connessioni per recensore per l'utente $1" 
-echo $(curl -s localhost:8080/connessioni/connessionirecensore/$UTENTE)
+echo $(curl -s ${SERVICE_HOST}:8080/connessioni/connessionirecensore/$UTENTE --connect-to ${SERVICE_HOST}:80:${CLUSTER}:${INGRESS_PORT})
 echo 

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SERVICE_HOST=goodbooks
+CLUSTER=kube-cluster
+INGRESS_PORT=31080
+
 # trova tutte le recensioni relative a un certo libro  
 
 if [ $# -eq 0 ]
@@ -12,5 +16,5 @@ fi
 TITOLO=$(echo $1 | sed -e "s/ /%20/g") 
 
 echo "# tutte le recensioni per il libro $1" 
-echo $(curl -s localhost:8080/recensioni/cercarecensioni/titolo/$TITOLO)
+echo $(curl -s ${SERVICE_HOST}:8080/recensioni/cercarecensioni/titolo/$TITOLO --connect-to ${SERVICE_HOST}:80:${CLUSTER}:${INGRESS_PORT})
 echo 

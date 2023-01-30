@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SERVICE_HOST=goodbooks
+CLUSTER=kube-cluster
+INGRESS_PORT=31080
+
 # trova tutte le recensioni seguite da un certo utente 
 
 if [ $# -eq 0 ]
@@ -12,5 +16,5 @@ fi
 UTENTE=$(echo $1 | sed -e "s/ /%20/g") 
 
 echo "# le recensioni seguite da $1" 
-echo $(curl -s localhost:8080/recensioni-seguite/recensioniseguite/$UTENTE)
+echo $(curl -s ${SERVICE_HOST}:8080/recensioni-seguite/recensioniseguite/$UTENTE --connect-to ${SERVICE_HOST}:80:${CLUSTER}:${INGRESS_PORT})
 echo 
