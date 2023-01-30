@@ -50,7 +50,7 @@ L'applicazione *GoodBooks* è composta dai seguenti microservizi:
   Operazioni: 
   * `GET /recensioniseguite/{utente}` trova tutti le recensioni seguite da un certo utente, ovvero le renesioni di autori di libri e di recensori seguiti da quell'utente
   
-* Il servizio *api-gateway* (esposto sulla porta *8080*) è l'API gateway dell'applicazione che: 
+* Il servizio *api-gateway* è l'API gateway dell'applicazione che: 
   * espone il servizio *recensioni* sul path `/recensioni` - ad esempio, `GET /recensioni/recensioni`
   * espone il servizio *connessioni* sul path `/connessioni` - ad esempio, `GET /connessioni/connessioniautore/{utente}`
   * espone il servizio *recensioni-seguite* sul path `/recensioni-seguite` - ad esempio, `GET /recensioni-seguite/recensioniseguite/{utente}`
