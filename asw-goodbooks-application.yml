@@ -164,12 +164,6 @@ spec:
           value: "1"
         - name: ALLOW_PLAINTEXT_LISTENER
           value: "yes"
-        - name: KAFKA_ADVERTISED_HOST_NAME
-          value: kafka
-        - name: KAFKA_ADVERTISED_PORT
-          value: "9092"
-        - name: KAFKA_PORT
-          value: "9092"
         - name: KAFKA_CFG_LISTENERS
           value: PLAINTEXT://:9092
         - name: KAFKA_CFG_ADVERTISED_LISTENERS
