@@ -1,11 +1,10 @@
 # GOODBOOKS
 
-Progetto del corso di Analisi e progettazione del software per l'anno accademico 2022-2023. 
+Progetto del corso di Architettura dei Sistemi Software per l'anno accademico 2022/2023. 
 
 La variante eseguibile con Docker è disponibile nella branch [docker](https://github.com/lorenzopollastrini/asw-goodbooks/tree/docker).
 
 La variante eseguibile con Kubernetes è disponibile nella branch [kubernetes](https://github.com/lorenzopollastrini/asw-goodbooks/tree/kubernetes).
-
 
 ## Descrizione di questo progetto 
 
@@ -55,10 +54,9 @@ L'applicazione *GoodBooks* è composta dai seguenti microservizi:
   * espone il servizio *connessioni* sul path `/connessioni` - ad esempio, `GET /connessioni/connessioniautore/{utente}`
   * espone il servizio *recensioni-seguite* sul path `/recensioni-seguite` - ad esempio, `GET /recensioni-seguite/recensioniseguite/{utente}`
 
-
 ## Descrizione delle attività da svolgere 
 
-Si veda la descrizione del progetto sul sito web del corso di [Architettura dei sistemi software](http://cabibbo.dia.uniroma3.it/asw/).
+Si veda la descrizione del progetto sul sito web del corso di [Architettura dei Sistemi Software](http://cabibbo.dia.uniroma3.it/asw/).
 
 Questo progetto realizza:
 * La variante più complessa della sezione "Modifica del codice e della configurazione dell’applicazione"
