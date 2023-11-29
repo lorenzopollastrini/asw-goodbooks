@@ -2,7 +2,7 @@
 
 ## Esecuzione con Docker 
 
-Questo progetto può essere eseguito nell'ambiente di esecuzione *workstation* del corso di Architettura dei Sistemi Software (2022-2023).
+Questo progetto può essere eseguito nell'ambiente di esecuzione *workstation* del corso di Architettura dei Sistemi Software (2022/2023).
 
 Per eseguire questo progetto: 
 
